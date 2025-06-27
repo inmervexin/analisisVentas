@@ -11,7 +11,7 @@ interface Factura {
   nombre_producto: string;
   cantidad: number;
   precio_unitario: number;
-  subtotal: number;
+  subtotal: number | null; // ← Aquí estaba el problema
   divisa: string;
   unidad_medida: string;
   categoria_producto?: string | null;

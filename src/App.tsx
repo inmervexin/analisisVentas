@@ -11,14 +11,15 @@ interface Factura {
   nombre_producto: string;
   cantidad: number;
   precio_unitario: number;
-  subtotal: number | null;
+  subtotal: number;
   divisa: string;
   unidad_medida: string;
-  categoria_producto?: string;
-  modelo?: string | null;  // <- CORREGIDO AQUÍ
-  tipo_producto?: string;
+  categoria_producto?: string | null;
+  modelo?: string | null;
+  tipo_producto?: string | null;
   oportunidad_refacciones?: number | null;
 }
+
 
 type VendedorData = Record<string, Factura[]>;
 

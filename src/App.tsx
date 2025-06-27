@@ -15,7 +15,7 @@ interface Factura {
   divisa: string;
   unidad_medida: string;
   categoria_producto?: string;
-  modelo?: string;
+  modelo?: string | null;  // <- CORREGIDO AQUÍ
   tipo_producto?: string;
   oportunidad_refacciones?: number | null;
 }

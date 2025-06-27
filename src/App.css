@@ -1,0 +1,146 @@
+/* App.css */
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif; /* Cambiado a Inter para un look más moderno */
+  background: linear-gradient(135deg, #e0f2fe, #f0f9ff); /* Tonos de azul claro */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.centered-container {
+  width: 100%;
+  max-width: 1400px; /* Aumentado el ancho máximo para más espacio */
+  background-color: #ffffff; /* Blanco limpio */
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08); /* Sombra ligeramente más pronunciada */
+}
+
+h1, h2 {
+  text-align: center;
+  color: #1f2937; /* Gris oscuro para el texto principal */
+  font-weight: 700;
+}
+
+select, input {
+  font-size: 1rem;
+  padding: 0.6rem; /* Ligeramente más padding */
+  border: 1px solid #cbd5e1; /* Borde gris más suave */
+  border-radius: 0.5rem;
+  outline: none;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Transición para un toque moderno */
+}
+
+select:focus, input:focus {
+  border-color: #60a5fa; /* Azul claro al enfocar */
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.25); /* Sombra de enfoque */
+}
+
+input::placeholder {
+  color: #94a3b8; /* Gris azulado para el placeholder */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: left;
+}
+
+th {
+  background-color: #e2e8f0; /* Gris azulado claro para encabezados de tabla */
+  color: #475569; /* Gris oscuro para texto de encabezado */
+  font-weight: 600;
+}
+
+td {
+  background-color: #ffffff;
+  color: #334155; /* Gris oscuro para texto de celda */
+}
+
+tr:nth-child(even) td {
+  background-color: #f8fafc; /* Blanco muy claro para filas pares */
+}
+
+.shadow {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Sombra ligeramente más profunda */
+}
+
+.rounded {
+  border-radius: 0.5rem;
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.bg-gray-100 {
+  background-color: #f1f5f9; /* Permanece similar, es un gris muy claro */
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.sm\:grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.lg\:grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.border {
+  border: 1px solid #e2e8f0; /* Borde gris azulado más suave */
+}

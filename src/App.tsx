@@ -11,30 +11,23 @@ interface Factura {
   nombre_producto: string;
   cantidad: number;
   precio_unitario: number;
-  subtotal: number;
+  subtotal: number | null;
   divisa: string;
   unidad_medida: string;
   categoria_producto?: string;
   modelo?: string;
   tipo_producto?: string;
-  oportunidad_refacciones?: number;
+  oportunidad_refacciones?: number | null;
 }
 
 type VendedorData = Record<string, Factura[]>;
 
 function useDebounce(value: string, delay: number) {
   const [debouncedValue, setDebouncedValue] = useState(value);
-
   useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value);
-    }, delay);
-
-    return () => {
-      clearTimeout(handler);
-    };
+    const handler = setTimeout(() => setDebouncedValue(value), delay);
+    return () => clearTimeout(handler);
   }, [value, delay]);
-
   return debouncedValue;
 }
 
@@ -54,18 +47,15 @@ const App: React.FC = () => {
 
   const dataFiltrada = useCallback(() => {
     let facturas = [...allFacturas];
-
     if (vendedorSeleccionado.trim()) {
       facturas = facturas.filter(f => (data as VendedorData)[vendedorSeleccionado]?.includes(f));
     }
-
     if (busquedaEmpresa.trim()) {
       facturas = facturas.filter(f =>
         f.cliente.toLowerCase().includes(busquedaEmpresa.toLowerCase()) ||
         f.nombre_producto.toLowerCase().includes(busquedaEmpresa.toLowerCase())
       );
     }
-
     return facturas;
   }, [allFacturas, vendedorSeleccionado, busquedaEmpresa]);
 
@@ -73,14 +63,14 @@ const App: React.FC = () => {
     const totalClientes = new Set(facturas.map(f => f.cliente)).size;
     const oportunidades = facturas.filter(f => (f.categoria_producto || '').toLowerCase().includes("oportunidad")).length;
     const mantenimiento = facturas.filter(f => (f.categoria_producto || '').toLowerCase().includes("mantenimiento")).length;
-    const totalVentasUSD = facturas.reduce((acc, f) => acc + (f.divisa === 'USD' ? f.subtotal : 0), 0);
-    const oportunidadRefacciones = facturas.reduce((acc, f) => acc + (f.oportunidad_refacciones || 0), 0);
-
+    const totalVentasUSD = facturas.reduce((acc, f) => acc + (f.divisa === 'USD' ? (f.subtotal ?? 0) : 0), 0);
+    const oportunidadRefacciones = facturas.reduce((acc, f) => acc + (f.oportunidad_refacciones ?? 0), 0);
     return { totalClientes, oportunidades, mantenimiento, totalVentasUSD, oportunidadRefacciones };
   };
 
   const facturas = dataFiltrada();
   const stats = resumen(facturas);
+
   const oportunidadesPorModelo = Object.entries(
     facturas.reduce((acc, f) => {
       if (f.modelo && typeof f.oportunidad_refacciones === 'number') {
@@ -90,7 +80,8 @@ const App: React.FC = () => {
     }, {} as Record<string, number>)
   );
 
-  const formatCurrency = (value: number) => `$${(value ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  const formatCurrency = (value: number) =>
+    `$${(value ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
   return (
     <div className="centered-container">

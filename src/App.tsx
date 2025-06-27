@@ -11,7 +11,7 @@ interface Factura {
   nombre_producto: string;
   cantidad: number;
   precio_unitario: number;
-  subtotal: number | null; // ← Aquí estaba el problema
+  subtotal: number | null;
   divisa: string;
   unidad_medida: string;
   categoria_producto?: string | null;
@@ -19,7 +19,6 @@ interface Factura {
   tipo_producto?: string | null;
   oportunidad_refacciones?: number | null;
 }
-
 
 type VendedorData = Record<string, Factura[]>;
 
@@ -127,7 +126,6 @@ const App: React.FC = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
         <div className="bg-white p-4 shadow rounded">Total Clientes: {stats.totalClientes}</div>
-        <div className="bg-white p-4 shadow rounded">Con Oportunidades: {stats.oportunidades}</div>
         <div className="bg-white p-4 shadow rounded">Oport. Mantenimiento: {stats.mantenimiento}</div>
         <div className="bg-white p-4 shadow rounded">Oport. Refacciones por impresora: {formatCurrency(stats.oportunidadRefacciones)}</div>
         <div className="bg-white p-4 shadow rounded">Total Ventas (USD): {formatCurrency(stats.totalVentasUSD)}</div>
